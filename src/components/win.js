@@ -3,15 +3,25 @@ import './win.css';
 
 function WinMessage(props) {
 
-    const { gameOver } = props;
-    let status = gameOver ? 'gameOver' : 'gameOn';
+    const { gameOver, restart } = props;
+
+    const handleClick = () => {
+        if (typeof(restart) === 'function') {
+            restart();
+        }
+    }
 
     return (
-        <h1
-            // className={`${gameOver ? 'gameOver' : 'gameOn'}`}
-            className={status}
-        > Well Done!
-        </h1>
+        <div>
+            <h1
+                className={`${gameOver ? 'gameOver' : 'gameOn'}`}
+            > Well Done!
+            </h1>
+            <button
+                className={`${gameOver ? 'gameOver' : 'gameOn'}`}
+                onClick={() => handleClick()}
+            >Play Again?</button>
+        </div>
     )
 }
 

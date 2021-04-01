@@ -27,6 +27,12 @@ function Game() {
         }
     }
 
+    function restart() {
+        setClicked(tilesArray.map(() => false));
+        setMatched(tilesArray.map(() => false));
+        setGameOver(false);
+    }
+
     useEffect(() => {
         let first = clicked.indexOf(true);
         let last = clicked.lastIndexOf(true);
@@ -63,7 +69,6 @@ function Game() {
             setGameOver(false);
         } else {
             setGameOver(true);
-            // console.log(gameOver);
         }
     }, [matched]);
         
@@ -77,6 +82,7 @@ function Game() {
             />
             <WinMessage
                 gameOver={gameOver}
+                restart={restart}
             />
         </div>
     )
