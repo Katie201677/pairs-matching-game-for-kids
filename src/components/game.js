@@ -61,13 +61,13 @@ function Game() {
                         ...m.slice(last + 1),
                     ]);
                     setCalculating(false);
-                }, 750);
+                }, 1000);
             } else {
                 setCalculating(true);
                 setTimeout(() => {
                     setClicked(tilesArray.map(() => false));
                     setCalculating(false);
-                }, 750);
+                }, 1000);
             }
         }
         
