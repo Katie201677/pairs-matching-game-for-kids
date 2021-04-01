@@ -1,20 +1,28 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect } from 'react';
 import Board from './board';
 import WinMessage from './win';
 
 function Game() {
 
-    const tilesArray = useMemo(() => (
-        ['cow', 'cow', 'pig', 'pig', 'horse', 'horse', 'duck', 'duck']
-    ), []); 
-    const [ clicked, setClicked ] = useState(tilesArray.map(() => false));
+    const animals = ['cow', 'cow', 'pig', 'pig', 'horse', 'horse', 'duck', 'duck'];
+    const [ tilesArray, setTilesArray ] = useState(shuffle(animals));
+    console.log(tilesArray);
+    const [ clicked, setClicked ] = useState(animals.map(() => false));
     const [ calculating, setCalculating] = useState(false);
-    console.log('clicked', clicked);
-    const [ matched, setMatched ] = useState(tilesArray.map(() => false));
-    console.log('matched', matched);
+    const [ matched, setMatched ] = useState(animals.map(() => false));
     const [gameOver, setGameOver ] = useState(false);
-    console.log(gameOver);
 
+    function shuffle(array) {
+        let arr = [...array];
+        for (let i=arr.length-1; i > 0; i--) {
+            const j = Math.floor(Math.random() * i);
+            const temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        return arr;
+    }
+    
     function flip(index) {   
         if (calculating || clicked[index]) {
             return;
@@ -28,9 +36,10 @@ function Game() {
     }
 
     function restart() {
-        setClicked(tilesArray.map(() => false));
-        setMatched(tilesArray.map(() => false));
+        setClicked(animals.map(() => false));
+        setMatched(animals.map(() => false));
         setGameOver(false);
+        setTilesArray(shuffle(animals));
     }
 
     useEffect(() => {
