@@ -4,7 +4,7 @@ import WinMessage from './win';
 
 function Game() {
 
-    const animals = ['cow', 'cow', 'pig', 'pig', 'horse', 'horse', 'duck', 'duck'];
+    const animals = ['cow', 'cow', 'pig', 'pig', 'horse', 'horse', 'sheep', 'sheep'];
     const [ tilesArray, setTilesArray ] = useState(shuffle(animals));
     console.log(tilesArray);
     const [ clicked, setClicked ] = useState(animals.map(() => false));
@@ -61,13 +61,13 @@ function Game() {
                         ...m.slice(last + 1),
                     ]);
                     setCalculating(false);
-                }, 1000);
+                }, 750);
             } else {
                 setCalculating(true);
                 setTimeout(() => {
                     setClicked(tilesArray.map(() => false));
                     setCalculating(false);
-                }, 1000);
+                }, 750);
             }
         }
         
@@ -83,7 +83,8 @@ function Game() {
         
     return (
         <div>
-            <h1>Pairs</h1>
+            <h1>Animal Pairs</h1>
+            <h2>Can You Find All The Matches?</h2>
             <Board 
                 flip={flip}
                 clicked={clicked}

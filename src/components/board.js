@@ -23,9 +23,9 @@ const boardLayout = tilesArray.map(
                     onClick = {() => handleClick(index)}
                     >
                     <div className={`${tile} front`}>
-                        {tile}
+                        
                     </div>
-                    <div className='back'>
+                    <div className={`back ${tile}`}>
 
                     </div>
                     
