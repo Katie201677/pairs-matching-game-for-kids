@@ -1,18 +1,19 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import Board from './board';
+import WinMessage from './win';
 
 function Game() {
 
     const tilesArray = useMemo(() => (
         ['cow', 'cow', 'pig', 'pig', 'horse', 'horse', 'duck', 'duck']
-    ), []);
-    // const [ clicked, setClicked ] = useState(tilesArray.map(() => ({flipped: false, matched: false})));  
+    ), []); 
     const [ clicked, setClicked ] = useState(tilesArray.map(() => false));
     const [ calculating, setCalculating] = useState(false);
     console.log('clicked', clicked);
     const [ matched, setMatched ] = useState(tilesArray.map(() => false));
     console.log('matched', matched);
-    // const [ classAllocation, setClassAllocation ] = useState(); 
+    const [gameOver, setGameOver ] = useState(false);
+    console.log(gameOver);
 
     function flip(index) {   
         if (calculating || clicked[index]) {
@@ -45,33 +46,40 @@ function Game() {
                         ...m.slice(last + 1),
                     ]);
                     setCalculating(false);
-                }, 1500);
+                }, 1000);
             } else {
                 setCalculating(true);
                 setTimeout(() => {
                     setClicked(tilesArray.map(() => false));
                     setCalculating(false);
-                }, 1500);
+                }, 1000);
             }
         }
+        
     }, [clicked, tilesArray]);
 
-    // useEffect(() => {
-
-    // }, [clicked])
+    useEffect(() => {
+        if (matched.includes(false)) {
+            setGameOver(false);
+        } else {
+            setGameOver(true);
+            // console.log(gameOver);
+        }
+    }, [matched]);
         
-        return (
-            <div>
-                <Board 
-                    flip={flip}
-                    clicked={clicked}
-                    tilesArray={tilesArray}
-                    matched={matched}
-                />
-            </div>
-        )
-    }
-
-
+    return (
+        <div>
+            <Board 
+                flip={flip}
+                clicked={clicked}
+                tilesArray={tilesArray}
+                matched={matched}
+            />
+            <WinMessage
+                gameOver={gameOver}
+            />
+        </div>
+    )
+}
 
 export default Game;

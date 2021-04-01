@@ -20,17 +20,6 @@ const handleClick = (index) => {
     }
 }
 
-// const classAllocation = (clicked, index) => {
-//     let classes;
-//     if (clicked[index]) {
-//         classes = 'flipped';
-//     } else if (clicked[index] === 'matched') {
-//         classes = 'matched';
-//     } else {
-//         classes = '';
-//     }
-// }
-
 const boardLayout = tilesArray.map(
     (tile, index) => {
         return (
@@ -39,7 +28,6 @@ const boardLayout = tilesArray.map(
                     >
                 <div
                     className={`tile ${clicked[index] ? 'flipped' : ''} ${matched[index] ? 'matched' : ''}`}
-                    // className={classAllocation(clicked, index)}
                     id={index}
                     onClick = {() => handleClick(index)}
                     >
