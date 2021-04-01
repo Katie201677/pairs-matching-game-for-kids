@@ -83,6 +83,7 @@ function Game() {
         
     return (
         <div>
+            <h1>Pairs</h1>
             <Board 
                 flip={flip}
                 clicked={clicked}

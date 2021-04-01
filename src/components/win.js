@@ -12,7 +12,7 @@ function WinMessage(props) {
     }
 
     return (
-        <div>
+        <div className='winMessage'>
             <h1
                 className={`${gameOver ? 'gameOver' : 'gameOn'}`}
             > Well Done!
