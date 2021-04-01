@@ -47,3 +47,7 @@
 .flipped {
     transform: rotateY(180deg);
 }
+
+.matched {
+    visibility: hidden;
+}
