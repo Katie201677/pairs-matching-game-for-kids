@@ -1,16 +1,36 @@
 .container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     position: relative;
     row-gap: 20px;
     column-gap: 5px;
 }
 
 .tile-container {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     background: transparent;
     margin: auto;
+}
+
+@media screen and (min-width: 450px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 620px) {
+    .tile-container {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .tile-container {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 .tile {
